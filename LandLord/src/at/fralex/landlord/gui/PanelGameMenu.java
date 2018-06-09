@@ -4,9 +4,9 @@ import java.awt.Color;
 
 import javax.swing.JPanel;
 
-public class PanelGame extends JPanel{
+public class PanelGameMenu extends JPanel{
 
-	public PanelGame() {
+	public PanelGameMenu() {
 	
 		this.setBackground(Color.BLACK);
 		
