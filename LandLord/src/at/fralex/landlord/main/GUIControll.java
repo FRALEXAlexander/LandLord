@@ -5,7 +5,7 @@ public class GUIControll {
 	public static void showPanel(String panel) {
 
 		Main.panelContainer.layout.show(Main.panelContainer, panel);
-
+		Main.panelContainer.repaint();
 	}
 
 }

@@ -11,57 +11,62 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JPanel;
+import javax.swing.JTextField;
 
 import at.fralex.landlord.main.GUIControll;
 import at.fralex.landlord.main.Main;
 import at.fralex.landlord.main.Menu;
 
-public class PanelMainMenu extends JPanel {
+public class PanelGameMenuSP extends JPanel {
 
-	public ButtonStandard exit,gameMenuSP,settings;
+	private ButtonStandard back, newGame, loadGame;
+	
+	
+	
 	boolean firstRun;
 
-	public PanelMainMenu() {
+	public PanelGameMenuSP() {
 
 		firstRun = true;
 		this.setLayout(null);
+		
+		back = new ButtonStandard();
+		newGame = new ButtonStandard();
+		loadGame = new ButtonStandard();
 
-		exit = new ButtonStandard();
-		gameMenuSP = new ButtonStandard();
-		settings = new ButtonStandard();
 		
 		
-		exit.setIcon(new ImageIcon("res/icon/ButtonExit.png"));
-		gameMenuSP.setIcon(new ImageIcon("res/icon/ButtonSingleplayer.png"));
-		settings.setIcon(new ImageIcon("res/icon/ButtonSettings.png"));
 		
-		exit.addActionListener(new ActionListener() {
-
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				Menu.exit();
-			}
-		});
+		back.setIcon(new ImageIcon("res/icon/ButtonBack.png"));
+		newGame.setIcon(new ImageIcon("res/icon/ButtonNew_Game.png"));
+		loadGame.setIcon(new ImageIcon("res/icon/ButtonLoad_Game.png"));
 		
-		gameMenuSP.addActionListener(new ActionListener() {
+		back.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				GUIControll.showPanel("gameMenuSP");
+				GUIControll.showPanel("mainMenu");
 			}
 		});
-		
-		settings.addActionListener(new ActionListener() {
+
+		newGame.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				GUIControll.showPanel("settings");
+				GUIControll.showPanel("newGame");
 			}
 		});
-		
-		this.add(exit);
-		this.add(gameMenuSP);
-		this.add(settings);
+		loadGame.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				GUIControll.showPanel("loadGame");
+			}
+		});
+
+		this.add(back);
+		this.add(newGame);
+		this.add(loadGame);
 	}
 
 	@Override
@@ -72,11 +77,12 @@ public class PanelMainMenu extends JPanel {
 
 		}
 
-		exit.setBounds(this.getWidth()- 350, this.getHeight() - 150, 300, 100);
-		settings.setBounds(50, this.getHeight() -150, 300, 100);
-		gameMenuSP.setBounds(this.getWidth() / 2 - 150, this.getHeight() / 4 * 2, 300, 100);
+		back.setBounds(this.getWidth() / 2 - 150, this.getHeight() / 4 * 3, 300, 100);
+		newGame.setBounds(this.getWidth() / 4 - 100, this.getHeight() / 4 * 2, 300, 100);
+		loadGame.setBounds(this.getWidth() / 4 * 3 - 200, this.getHeight() / 4 * 2, 300, 100);
 		
-
+		
+		
 		Graphics2D g2d = (Graphics2D) g;
 		g2d.setColor(new Color(123, 200, 80));
 		g2d.fillRect(0, 0, this.getWidth(), this.getHeight());

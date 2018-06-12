@@ -1,9 +1,7 @@
 package at.fralex.landlord.util;
 
-import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
-import java.awt.Image;
 import java.awt.font.FontRenderContext;
 import java.awt.geom.AffineTransform;
 import java.awt.image.BufferedImage;
@@ -27,23 +25,29 @@ public class CreateIcon {
 		BufferedImage image = new BufferedImage(width, height, BufferedImage.TYPE_INT_ARGB);
 
 		Graphics2D g = image.createGraphics();
-		int fontsize = 0;
-		if(height < width) {
-			fontsize = height;
-		}else {
-			fontsize = width/2;
-		}
-		
+		int fontsize = 1;
+		int textwidth = 0 ;
+		int textheight = 0;
+		Font font;
+		while(true) {
+			
 		AffineTransform affinetransform = new AffineTransform();     
 		FontRenderContext frc = new FontRenderContext(affinetransform,true,true);     
-		Font font = new Font(fontname, Font.PLAIN, fontsize);
-		int textwidth = (int)(font.getStringBounds(text, frc).getWidth());
-		int textheight = (int)(font.getStringBounds(text, frc).getHeight());
+		font = new Font(fontname, Font.PLAIN, fontsize);
+		 textwidth = (int)(font.getStringBounds(text, frc).getWidth());
+		textheight = (int)(font.getStringBounds(text, frc).getHeight());
 		
+		if(textwidth > width-10 || textheight > height-10) {
+			break;
+		}else {
+			fontsize++;
+		}
+		
+		}
 		
 		g.drawImage(originalImage, 0, 0, null);
 		g.setFont(font);
-		g.drawString(text, width/2-textwidth/2, height/2 + (textheight/32 * 10));
+		g.drawString(text, width/2-textwidth/2, height/2 + textheight/3 );
 		g.dispose();
 
 		File f = new File("res/icon/"+outputName+".png");

@@ -5,23 +5,36 @@ import javax.swing.JPanel;
 
 public class PanelContainer extends JPanel {
 
-	PanelGameMenu gameMenu;
+	PanelGameMenuSP gameMenuSP;
 	PanelMainMenu mainMenu;
+	PanelSettings settings;
+	PanelNewGame newGame;
+	PanelLoadGame loadGame;
+	PanelGame game;
 	
 	public CardLayout layout;
 	
 
 	public PanelContainer() {
+		
 		layout = new CardLayout();
-		gameMenu = new PanelGameMenu();
+		
+		gameMenuSP = new PanelGameMenuSP();
 		mainMenu = new PanelMainMenu();
-
+		settings = new PanelSettings();
+		newGame = new PanelNewGame();
+		loadGame = new PanelLoadGame();
+		game = new PanelGame();
+		
 		this.setLayout(layout);
 
 		
-		this.add(mainMenu, "menu");
-		this.add(gameMenu, "gameMenu");
-		
+		this.add(mainMenu, "mainMenu");
+		this.add(gameMenuSP, "gameMenuSP");
+		this.add(settings, "settings");
+		this.add(newGame,"newGame");
+		this.add(loadGame,"loadGame");
+		this.add(game,"game");
 
 	}
 

@@ -1,16 +1,10 @@
 package at.fralex.landlord.main;
 
-import java.awt.Image;
-import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
-import javax.swing.ImageIcon;
-
+import at.fralex.landlord.game.StartNewGame;
 import at.fralex.landlord.gui.FrameMain;
 import at.fralex.landlord.gui.PanelContainer;
-import at.fralex.landlord.util.CreateIcon;
 
 public class Main {
 	public static PanelContainer panelContainer = new PanelContainer();
@@ -19,7 +13,15 @@ public class Main {
 	
 	public static void main(String[] args) {
 		
-		CreateIcon.createIcon("This is a Test", new File("res/test.png"), "Impact", 2500,400,"test");
+//		CreateIcon.createIcon("Back", new File("res/test.png"), "Impact", 300,100,"ButtonBack");
+//		CreateIcon.createIcon("Exit", new File("res/test.png"), "Impact", 300,100,"ButtonExit");
+//		CreateIcon.createIcon("Singleplayer", new File("res/test.png"), "Impact", 300,100,"ButtonSingleplayer");
+		//CreateIcon.createIcon("", new File("res/test.png"), "Impact", 600,100,"TextfieldName");
+		
+		StartNewGame.start("Test");
+		
+		System.out.println("done");
+	
 	}
 
 }

@@ -12,11 +12,9 @@ import javax.swing.JButton;
 
 public class ButtonStandard extends JButton {
 
-	public ButtonStandard(String text) {
+	public ButtonStandard() {
 		
-		this.setText(text);
-		
-		
+	
 		this.setFont(new Font("Arial", Font.PLAIN, 20));
 		this.setBorder(null);
 		this.setBackground(Color.WHITE);
