@@ -7,7 +7,7 @@ public class StartNewGame {
 	public static void start(String name) {
 		
 		CurrentGame.name = name;
-
+		CurrentGame.grid = new Grid();
 		GUIControll.showPanel("game");
 		
 	}

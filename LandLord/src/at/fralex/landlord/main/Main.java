@@ -18,7 +18,7 @@ public class Main {
 //		CreateIcon.createIcon("Singleplayer", new File("res/test.png"), "Impact", 300,100,"ButtonSingleplayer");
 		//CreateIcon.createIcon("", new File("res/test.png"), "Impact", 600,100,"TextfieldName");
 		
-		StartNewGame.start("Test");
+		StartNewGame.start("");
 		
 		System.out.println("done");
 	
