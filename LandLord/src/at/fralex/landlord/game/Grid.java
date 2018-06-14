@@ -17,7 +17,7 @@ public class Grid {
 	public Grid() {
 
 		random = new Random();
-		grid = new String[10][10][1];
+		grid = new String[30][30][1];
 		firstRun = true;
 		
 		width = 48*10;
@@ -27,16 +27,24 @@ public class Grid {
 	public void setX(int X) {
 		x =  X;
 		
-//		if (x < 0) {
-//			x = 0;
-//		} else if (x + grid.length * 48 > Main.panelContainer.getWidth()) {
-//			x = Main.panelContainer.getWidth() - grid.length * 48;
-//		}
+		if (x < -grid.length * 48 + Main.panelContainer.getWidth() ) {
+			x = -grid.length * 48 + Main.panelContainer.getWidth();
+		} 
+		else if (x > 0) {
+			x = 0 ;
+		}
 	}
 
 	public void setY(int Y) {
 		y =  Y;
-
+		
+		
+		if (y < -grid.length * 48 + Main.panelContainer.getHeight() ) {
+			y = -grid.length * 48 + Main.panelContainer.getHeight();
+		} 
+		else if (y > 0) {
+			y = 0 ;
+		}
 	}
 
 	public void draw(Graphics2D g2d) {
@@ -47,12 +55,16 @@ public class Grid {
 				if (firstRun) {
 
 					g2d.setColor(new Color(random.nextInt(255), random.nextInt(255), random.nextInt(255)));
+					
 				}
 
 				g2d.fillRect(x + i * 48, y + j * 48, 48, 48);
-
+				
 			}
 		}
+		g2d.setColor(Color.BLACK);
+				g2d.drawString("1", x+20, y+20);
+				g2d.drawString("1", x +48*30 -20, y + 48*30 -20);
 		// firstRun = false;
 
 	}
