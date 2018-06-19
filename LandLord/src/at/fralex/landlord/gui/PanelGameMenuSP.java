@@ -60,7 +60,7 @@ public class PanelGameMenuSP extends JPanel {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				GUIControll.showPanel("loadGame");
+				//GUIControll.showPanel("loadGame");
 			}
 		});
 

@@ -3,69 +3,122 @@ package at.fralex.landlord.game;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.geom.AffineTransform;
+import java.awt.image.BufferedImage;
+import java.awt.image.ImageObserver;
+import java.io.File;
+import java.io.IOException;
 import java.util.Random;
 
+import javax.imageio.ImageIO;
+
+import at.fralex.landlord.game.objects.GridObject;
 import at.fralex.landlord.main.Main;
 
 public class Grid {
 
-	private String[][][] grid;
-	public int x, y,width,height;
+	public GridObject[][] grid;
+	public int gridXPos, gridYPos ;
 	Random random;
 	boolean firstRun;
+	public int gridSize;
+
+	BufferedImage gridBackground = null;
 
 	public Grid() {
-
+		gridSize = 64;
 		random = new Random();
-		grid = new String[30][30][1];
+		grid = new GridObject[30][20];
 		firstRun = true;
+
 		
-		width = 48*10;
-		height = 48 * 10;
+
+		try {
+			gridBackground = ImageIO.read(new File("res/game/BackgroundGrid.png"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	public void setX(int X) {
-		x =  X;
-		
-		if (x < -grid.length * 48 + Main.panelContainer.getWidth() ) {
-			x = -grid.length * 48 + Main.panelContainer.getWidth();
-		} 
-		else if (x > 0) {
-			x = 0 ;
+		gridXPos = X;
+
+		if (gridXPos < -grid.length * gridSize + Main.panelContainer.getWidth()) {
+			gridXPos = -grid.length * gridSize + Main.panelContainer.getWidth();
+		} else if (gridXPos > 0) {
+			gridXPos = 0;
 		}
 	}
 
 	public void setY(int Y) {
-		y =  Y;
-		
-		
-		if (y < -grid.length * 48 + Main.panelContainer.getHeight() ) {
-			y = -grid.length * 48 + Main.panelContainer.getHeight();
-		} 
-		else if (y > 0) {
-			y = 0 ;
+		gridYPos = Y;
+
+		if (gridYPos < -grid[0].length * gridSize + Main.panelContainer.getHeight() - 100) {
+			gridYPos = -grid[0].length * gridSize + Main.panelContainer.getHeight() - 100;
+		} else if (gridYPos > 50) {
+			gridYPos = 50;
 		}
 	}
 
-	public void draw(Graphics2D g2d) {
+	public void draw(Graphics2D g2d, ImageObserver iob) {
+
+		AffineTransform transform = new AffineTransform();
+		transform.translate(CurrentGame.grid.gridXPos, CurrentGame.grid.gridYPos);
+
+		AffineTransform saveAT = g2d.getTransform();
+
+		g2d.transform(transform);
+
 		g2d.setFont(new Font("Impact", Font.BOLD, 20));
 		for (int i = 0; i < grid.length; i++) {
 			for (int j = 0; j < grid[i].length; j++) {
 
-				if (firstRun) {
-
-					g2d.setColor(new Color(random.nextInt(255), random.nextInt(255), random.nextInt(255)));
-					
-				}
-
-				g2d.fillRect(x + i * 48, y + j * 48, 48, 48);
-				
+				g2d.drawImage(gridBackground, i * gridSize, j * gridSize,iob);
 			}
 		}
+
 		g2d.setColor(Color.BLACK);
-				g2d.drawString("1", x+20, y+20);
-				g2d.drawString("1", x +48*30 -20, y + 48*30 -20);
-		// firstRun = false;
+
+		for (int i = 0; i < grid.length; i++) {
+			for (int j = 0; j < grid[0].length; j++) {
+
+				if (grid[i][j] != null) {
+					grid[i][j].drawObject(g2d, 0,iob);
+				}
+			}
+		}
+
+		g2d.setTransform(saveAT);
+	}
+
+	public void clicked(int xPos, int yPos) {
+
+		int gridX = -1;
+		int gridY = -1;
+
+		for (int i = 0; i < grid.length; i++) {
+			if (xPos > i * gridSize + gridXPos && xPos < i * gridSize + gridSize + gridXPos) {
+				gridX = i;
+			}
+		}
+
+		for (int i = 0; i < grid.length; i++) {
+			if (yPos > i * gridSize + gridYPos && yPos < i * gridSize + gridSize + gridYPos) {
+				gridY = i;
+			}
+		}
+
+		if (xPos > 25 && xPos < 125 && yPos < Main.panelContainer.getHeight() - 25
+				&& yPos > Main.panelContainer.getHeight() - 75) {
+
+			if (Main.panelContainer.game.showShop == false) {
+
+				Main.panelContainer.game.showShop = true;
+			} else {
+				Main.panelContainer.game.showShop = false;
+			}
+		}
 
 	}
 }

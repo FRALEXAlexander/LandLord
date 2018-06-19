@@ -10,7 +10,7 @@ public class PanelContainer extends JPanel {
 	PanelSettings settings;
 	PanelNewGame newGame;
 	PanelLoadGame loadGame;
-	PanelGame game;
+	public PanelGame game;
 	
 	public CardLayout layout;
 	
