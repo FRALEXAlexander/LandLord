@@ -3,6 +3,10 @@ package at.fralex.landlord.game.objects;
 import java.awt.Graphics2D;
 import java.awt.image.ImageObserver;
 
+import javax.rmi.CORBA.Util;
+
+import at.fralex.landlord.util.Utils;
+
 public class GridObject {
 
 	private String OBJECT;
@@ -29,7 +33,7 @@ public class GridObject {
 			@Override
 			public void run() {
 				while (true) {
-
+					Utils.sleep(1000);
 				}
 			}
 		};

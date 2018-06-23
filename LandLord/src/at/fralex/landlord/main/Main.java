@@ -20,9 +20,9 @@ public class Main {
 		
 		StartNewGame.start("");
 
-		CurrentGame.grid.grid[2][2] = new GridObject("nexus", 0, 1, 1, 1);
+		CurrentGame.grid.grid[2][2] = new GridObject("nexus", 0, 0, 1, 1);
 		
-		CurrentGame.grid.grid[3][3] = new GridObject("road", 0, 1, 2, 1);
+		CurrentGame.grid.grid[3][3] = new GridObject("road", 0, 0, 2, 1);
 		
 		System.out.println("done");
 

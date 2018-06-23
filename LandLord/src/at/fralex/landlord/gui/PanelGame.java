@@ -22,10 +22,16 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 
 import at.fralex.landlord.game.CurrentGame;
+import at.fralex.landlord.game.gui.Shop;
+import at.fralex.landlord.main.Main;
 
 public class PanelGame extends JPanel implements ActionListener, MouseMotionListener, MouseListener {
 
 	int clickedX, clickedY, correctX, correctY;
+
+	public static int currentX;
+
+	public static int currentY;
 
 	Timer timer;
 
@@ -69,14 +75,35 @@ public class PanelGame extends JPanel implements ActionListener, MouseMotionList
 
 		g2d.drawImage(shopIcon, 25, this.getHeight() - 75, this);
 		if (showShop) {
-			g2d.fillRect(0, 50, 200, this.getHeight() - 150);
+			Shop.drawShop(g2d, this);
 		}
+
+	}
+
+	public static void drawIconAtCursor(Graphics2D g2d, Image img) {
+
+		int[] pos = CurrentGame.grid.getGridPos(currentX, currentY);
+
+		if (img == null || pos == null) {
+			return;
+		}
+
+		g2d.drawImage(img, pos[0] * CurrentGame.grid.gridSize, pos[1] * CurrentGame.grid.gridSize,
+				Main.panelContainer.game);
 	}
 
 	@Override
 	public void mouseDragged(MouseEvent e) {
 
-		if (e.getY() > 50 && e.getY() < this.getHeight() - 100) {
+		currentX = e.getX();
+		currentY = e.getY();
+
+		if (e.getY() > 50 && e.getY() < this.getHeight() - 100 && !showShop) {
+
+			if (Main.panelContainer.game.showShop && e.getX() < 200) {
+				return;
+			}
+
 			if (newClick) {
 				newClick = false;
 				correctX = CurrentGame.grid.gridXPos - clickedX;
@@ -90,12 +117,19 @@ public class PanelGame extends JPanel implements ActionListener, MouseMotionList
 
 	@Override
 	public void mouseMoved(MouseEvent e) {
-		// TODO Auto-generated method stub
 
+		currentX = e.getX();
+		currentY = e.getY();
 	}
 
 	@Override
 	public void mouseClicked(MouseEvent e) {
+		if (showShop && e.getX() > Main.panelContainer.getWidth() / 2 - 400
+				&& e.getX() < Main.panelContainer.getWidth() / 2 + 400
+				&& e.getY() > Main.panelContainer.getHeight() / 2 - 275
+				&& e.getY() < Main.panelContainer.getHeight() / 2 + 275) {
+			Shop.clickInShop(e.getX(), e.getY());
+		}
 		CurrentGame.grid.clicked(e.getX(), e.getY());
 	}
 

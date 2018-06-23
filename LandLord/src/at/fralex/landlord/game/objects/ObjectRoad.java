@@ -9,6 +9,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import at.fralex.landlord.game.CurrentGame;
+import at.fralex.landlord.gui.LoadImages;
 
 public class ObjectRoad {
 
@@ -24,22 +25,10 @@ public class ObjectRoad {
 
 	public void draw(Graphics2D g2d, ImageObserver iob) {
 
-		switch (OBJECTLEVEL) {
-		case 1:
+		
+			g2d.drawImage(LoadImages.objectRoad[OBJECTLEVEL][0], GRIDX * CurrentGame.grid.gridSize, GRIDY * CurrentGame.grid.gridSize,iob);
 			
-			try {
-				icon = ImageIO.read(new File("res/game/objects/road/road0.png"));
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			g2d.drawImage(icon, GRIDX * CurrentGame.grid.gridSize, GRIDY * CurrentGame.grid.gridSize,iob);
-			
-			break;
-
-		default:
-			break;
-		}
+		
 
 	}
 
