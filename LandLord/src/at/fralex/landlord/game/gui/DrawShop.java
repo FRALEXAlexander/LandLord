@@ -1,16 +1,16 @@
 package at.fralex.landlord.game.gui;
 
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.image.ImageObserver;
 
-import javax.rmi.CORBA.Util;
-
 import at.fralex.landlord.game.CurrentGame;
+import at.fralex.landlord.game.GameUtils;
+import at.fralex.landlord.game.Inputs;
 import at.fralex.landlord.gui.LoadImages;
 import at.fralex.landlord.main.Main;
-import at.fralex.landlord.util.Utils;
 
-public class Shop {
+public class DrawShop {
 
 	public static void drawShop(Graphics2D g2d, ImageObserver iob) {
 
@@ -24,19 +24,16 @@ public class Shop {
 
 	}
 
-	public static void clickInShop(int xPos, int yPos) {
+	public static void drawIconAtCursor(Graphics2D g2d, Image img) {
 
-		if (Utils.isPointInRect(xPos, yPos, Main.panelContainer.getWidth() / 2 - 400 + 50,
-				Main.panelContainer.getHeight() / 2 - 275 + 50, 64, 64)) {
+		int[] pos = GameUtils.getGridPos(Inputs.currentX, Inputs.currentY);
 
-			CurrentGame.iconToDrawAtCursor = LoadImages.objectNexus[0][0];
-		} else if (Utils.isPointInRect(xPos, yPos, Main.panelContainer.getWidth() / 2 - 400 + 124,
-				Main.panelContainer.getHeight() / 2 - 275 + 50, 64, 64)) {
-
-			CurrentGame.iconToDrawAtCursor = LoadImages.objectRoad[0][0];
+		if (img == null || pos == null) {
+			return;
 		}
-		Main.panelContainer.game.showShop = false;
-		CurrentGame.grid.falseClick = true;
+
+		g2d.drawImage(img, pos[0] * CurrentGame.grid.gridSize, pos[1] * CurrentGame.grid.gridSize,
+				Main.panelContainer.game);
 	}
 
 }

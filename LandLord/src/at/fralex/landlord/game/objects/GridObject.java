@@ -57,7 +57,7 @@ public class GridObject {
 			case "road":
 				objRoad.draw(g2d, iob);
 				break;
-					
+
 			default:
 				break;
 			}

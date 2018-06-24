@@ -1,14 +1,7 @@
 package at.fralex.landlord.game.objects;
 
-import java.awt.Color;
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import java.awt.image.ImageObserver;
-import java.io.File;
-import java.io.IOException;
-
-import javax.imageio.ImageIO;
-
 import at.fralex.landlord.game.CurrentGame;
 import at.fralex.landlord.gui.LoadImages;
 
@@ -26,12 +19,8 @@ public class ObjectNexus {
 
 	public void draw(Graphics2D g2d, ImageObserver iob) {
 
-		
-			g2d.drawImage(LoadImages.objectNexus[OBJECTLEVEL][0], GRIDX * CurrentGame.grid.gridSize,
-					GRIDY * CurrentGame.grid.gridSize, iob);
-
-		
-		
+		g2d.drawImage(LoadImages.objectNexus[OBJECTLEVEL][0], GRIDX * CurrentGame.grid.gridSize,
+				GRIDY * CurrentGame.grid.gridSize, iob);
 
 	}
 
