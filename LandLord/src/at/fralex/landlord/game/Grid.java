@@ -8,9 +8,9 @@ public class Grid {
 	public GridObject[][] objects;
 	public int gridXPos, gridYPos, gridSize;
 
-	public Grid(int gridWidth, int gridHeight, int gridsize) {
+	public Grid(int gridWidth, int gridHeight) {
 		
-		gridSize = gridsize;
+		gridSize = CurrentGame.zoom * 64;
 		objects = new GridObject[gridWidth][gridHeight];
 
 	}

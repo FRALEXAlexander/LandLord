@@ -3,13 +3,15 @@ package at.fralex.landlord.game;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
+import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 
 import at.fralex.landlord.game.objects.GridObject;
 import at.fralex.landlord.gui.LoadImages;
 import at.fralex.landlord.main.Main;
 import at.fralex.landlord.util.Utils;
 
-public class Inputs implements MouseMotionListener, MouseListener {
+public class Inputs implements MouseMotionListener, MouseListener, MouseWheelListener {
 
 	int clickedX, clickedY, correctX, correctY;
 
@@ -140,6 +142,25 @@ public class Inputs implements MouseMotionListener, MouseListener {
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public void mouseWheelMoved(MouseWheelEvent e) {
+		// TODO Auto-generated method stub
+		
+		
+		if(e.getWheelRotation()==1 && CurrentGame.zoom>1) {
+			CurrentGame.zoom--;
+		}else if(e.getWheelRotation()==-1 && CurrentGame.zoom<3) {
+			CurrentGame.zoom++;
+		}
+		
+		CurrentGame.grid.gridSize = CurrentGame.zoom * 64;
+		Utils.updateScale();
+		
+		
+		
+		
 	}
 
 }

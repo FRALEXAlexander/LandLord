@@ -3,6 +3,7 @@ package at.fralex.landlord.game.gui;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.Image;
 import java.awt.geom.AffineTransform;
 import java.awt.image.ImageObserver;
 
@@ -19,7 +20,9 @@ public class DrawGrid {
 
 		AffineTransform transform = new AffineTransform();
 		transform.translate(CurrentGame.grid.gridXPos, CurrentGame.grid.gridYPos);
-
+		
+		
+		
 		AffineTransform saveAT = g2d.getTransform();
 
 		g2d.transform(transform);
@@ -47,6 +50,8 @@ public class DrawGrid {
 		DrawShop.drawIconAtCursor(g2d, CurrentGame.iconToDrawAtCursor);
 
 		g2d.setTransform(saveAT);
+		
+		
 	}
 
 }

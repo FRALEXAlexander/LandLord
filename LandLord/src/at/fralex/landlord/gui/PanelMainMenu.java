@@ -1,4 +1,4 @@
-package at.fralex.landlord.gui;
+		package at.fralex.landlord.gui;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -27,6 +27,7 @@ public class PanelMainMenu extends JPanel {
 		this.setLayout(null);
 
 		exit = new ButtonStandard();
+		
 		gameMenuSP = new ButtonStandard();
 		settings = new ButtonStandard();
 		

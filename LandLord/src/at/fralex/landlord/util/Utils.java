@@ -7,6 +7,9 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+import at.fralex.landlord.game.CurrentGame;
+import at.fralex.landlord.gui.LoadImages;
+
 public class Utils {
 
 	public static Image loadImage(String filepath) {
@@ -35,4 +38,13 @@ public class Utils {
 		}
 
 	}
+	
+	public static void updateScale() {
+		
+		LoadImages.gridBackground = LoadImages.gridBackground.getScaledInstance(CurrentGame.grid.gridSize, -1, Image.SCALE_REPLICATE);
+		LoadImages.objectNexus[0][0] = LoadImages.objectNexus[0][0].getScaledInstance(CurrentGame.grid.gridSize, -1, Image.SCALE_REPLICATE);
+		LoadImages.objectRoad[0][0] = LoadImages.objectRoad[0][0].getScaledInstance(CurrentGame.grid.gridSize, -1, Image.SCALE_REPLICATE);
+		
+	}
+	
 }

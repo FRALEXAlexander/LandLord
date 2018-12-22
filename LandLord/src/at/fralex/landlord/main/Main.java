@@ -1,13 +1,11 @@
 package at.fralex.landlord.main;
 
-import java.io.File;
-
 import at.fralex.landlord.game.CurrentGame;
 import at.fralex.landlord.game.StartNewGame;
 import at.fralex.landlord.game.objects.GridObject;
 import at.fralex.landlord.gui.FrameMain;
 import at.fralex.landlord.gui.PanelContainer;
-import at.fralex.landlord.util.CreateIcon;
+import at.fralex.landlord.util.Utils;
 
 public class Main {
 	public static PanelContainer panelContainer = new PanelContainer();
@@ -24,8 +22,10 @@ public class Main {
 		
 		CurrentGame.grid.objects[2][1] = new GridObject("road", 0, 0, 2, 1);
 		
+		
+		
 		System.out.println("done");
-
+			
 	}
 
 }

@@ -30,6 +30,7 @@ public class PanelGame extends JPanel implements ActionListener {
 
 		this.addMouseMotionListener(inputs);
 		this.addMouseListener(inputs);
+		this.addMouseWheelListener(inputs);
 
 	}
 
@@ -44,6 +45,8 @@ public class PanelGame extends JPanel implements ActionListener {
 		if (CurrentGame.showShop) {
 			DrawShop.drawShop(g2d, this);
 		}
+		
+		
 	}
 
 	@Override

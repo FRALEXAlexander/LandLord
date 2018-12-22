@@ -7,7 +7,8 @@ public class StartNewGame {
 	public static void start(String name) {
 
 		CurrentGame.name = name;
-		CurrentGame.grid = new Grid(30, 20, 64);
+		CurrentGame.zoom = 1;
+		CurrentGame.grid = new Grid(30, 20);
 		GUIControll.showPanel("game");
 
 	}

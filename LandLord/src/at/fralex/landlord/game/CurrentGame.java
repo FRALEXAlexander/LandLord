@@ -11,4 +11,5 @@ public class CurrentGame {
 	public static GridObject[] objects;
 	public static Image iconToDrawAtCursor;
 	public static boolean showShop;
+	public static int zoom;
 }
