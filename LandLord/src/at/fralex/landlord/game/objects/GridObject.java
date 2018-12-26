@@ -3,37 +3,36 @@ package at.fralex.landlord.game.objects;
 import java.awt.Graphics2D;
 import java.awt.image.ImageObserver;
 
-import javax.rmi.CORBA.Util;
-
 import at.fralex.landlord.util.Utils;
 
 public class GridObject {
 
-	private String OBJECT;
-	private int MAPLEVEL;
-	private int OBJECTLEVEL;
-	private int GRIDX;
-	private int GRIDY;
+	private GridObject object;
+	private String name;
+	private int gridX;
+	private int gridY;
+	
 
-	private ObjectNexus objNexus;
-	private ObjectMine objMine;
-	private ObjectRoad objRoad;
+	
+	public GridObject() {
+		
+	}
+	
+	
+	public GridObject(GridObject object) {
 
-	public GridObject(String object, int mapLevel, int objectLevel, int gridX, int gridY) {
-
-		OBJECT = object;
-		MAPLEVEL = mapLevel;
-		OBJECTLEVEL = objectLevel;
-		GRIDX = gridX;
-		GRIDY = gridY;
-		loadObject();
-
+		this.object = object;
+		
+		this.name = object.getName();
+		
+		
 		Runnable run = new Runnable() {
 
 			@Override
 			public void run() {
 				while (true) {
 					Utils.sleep(1000);
+					runtime();
 				}
 			}
 		};
@@ -42,45 +41,45 @@ public class GridObject {
 		thread.start();
 
 	}
-
-	public void drawObject(Graphics2D g2d, int mapLevel, ImageObserver iob) {
-
-		if (mapLevel == 0) {
-			switch (OBJECT) {
-			case "nexus":
-				objNexus.draw(g2d, iob);
-				;
-				break;
-			case "mine":
-				objMine.draw(g2d);
-				break;
-			case "road":
-				objRoad.draw(g2d, iob);
-				break;
-
-			default:
-				break;
-			}
-		}
+	
+	public void runtime() {
+		
 	}
 
-	private void loadObject() {
-
-		switch (OBJECT) {
-		case "nexus":
-			objNexus = new ObjectNexus(OBJECTLEVEL, GRIDX, GRIDY);
-			break;
-		case "mine":
-			objMine = new ObjectMine(OBJECTLEVEL);
-			break;
-		case "road":
-			objRoad = new ObjectRoad(OBJECTLEVEL, GRIDX, GRIDY);
-			break;
-
-		default:
-			break;
-		}
-
+	public void drawObject(Graphics2D g2d,ImageObserver iob) {
+		
+		this.object.draw(g2d, iob);
+		
+	}
+	
+	
+	protected void draw(Graphics2D g2d, ImageObserver iob) {
+		
 	}
 
+
+	public String getName() {
+		// TODO Auto-generated method stub
+		return this.name;
+	}
+	
+	public void setPos(int gridX,int gridY) {
+		
+		this.object.setGridX(gridX);
+		this.object.setGridY(gridY);
+		
+	}
+
+
+	public void setGridX(int gridX) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
+	public void setGridY(int gridY) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 }

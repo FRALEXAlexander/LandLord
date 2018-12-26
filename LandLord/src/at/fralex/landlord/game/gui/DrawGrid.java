@@ -42,12 +42,15 @@ public class DrawGrid {
 			for (int j = 0; j < objects[0].length; j++) {
 
 				if (objects[i][j] != null) {
-					objects[i][j].drawObject(g2d, 0, iob);
+					objects[i][j].drawObject(g2d, iob);
 				}
 			}
 		}
-
-		DrawShop.drawIconAtCursor(g2d, CurrentGame.iconToDrawAtCursor);
+		
+		
+		
+		
+		DrawShop.drawIconAtCursor(g2d, iob);
 
 		g2d.setTransform(saveAT);
 		

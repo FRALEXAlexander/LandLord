@@ -39,12 +39,27 @@ public class Utils {
 
 	}
 	
-	public static void updateScale() {
+	
+
+	public static Image updateScale(Image image, int scale) {
 		
-		LoadImages.gridBackground = LoadImages.gridBackground.getScaledInstance(CurrentGame.grid.gridSize, -1, Image.SCALE_REPLICATE);
-		LoadImages.objectNexus[0][0] = LoadImages.objectNexus[0][0].getScaledInstance(CurrentGame.grid.gridSize, -1, Image.SCALE_REPLICATE);
-		LoadImages.objectRoad[0][0] = LoadImages.objectRoad[0][0].getScaledInstance(CurrentGame.grid.gridSize, -1, Image.SCALE_REPLICATE);
+		
+		return image.getScaledInstance(CurrentGame.gridSizeBase * scale, -1, Image.SCALE_REPLICATE);
+		
 		
 	}
+
+	public static void updateScale() {
+		LoadImages.objectNexus[0][0] = LoadImages.objectNexus[0][0].getScaledInstance(CurrentGame.grid.gridSize, -1, Image.SCALE_REPLICATE);
+		LoadImages.objectRoad[0][0] = LoadImages.objectRoad[0][0].getScaledInstance(CurrentGame.grid.gridSize, -1, Image.SCALE_REPLICATE);
+		LoadImages.gridBackground = LoadImages.gridBackground.getScaledInstance(CurrentGame.grid.gridSize, -1, Image.SCALE_REPLICATE);
+		
+		
+	
+		
+		
+	}
+
+	
 	
 }

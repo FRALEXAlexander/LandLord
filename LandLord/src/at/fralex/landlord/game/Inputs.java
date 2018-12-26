@@ -7,6 +7,8 @@ import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
 import at.fralex.landlord.game.objects.GridObject;
+import at.fralex.landlord.game.objects.ObjectNexus;
+import at.fralex.landlord.game.objects.ObjectRoad;
 import at.fralex.landlord.gui.LoadImages;
 import at.fralex.landlord.main.Main;
 import at.fralex.landlord.util.Utils;
@@ -36,7 +38,7 @@ public class Inputs implements MouseMotionListener, MouseListener, MouseWheelLis
 			if (CurrentGame.showShop == false) {
 
 				CurrentGame.showShop = true;
-				CurrentGame.iconToDrawAtCursor = null;
+				CurrentGame.objcetToPlace = null;
 
 			} else {
 				CurrentGame.showShop = false;
@@ -44,7 +46,7 @@ public class Inputs implements MouseMotionListener, MouseListener, MouseWheelLis
 			return;
 		}
 
-		if (CurrentGame.iconToDrawAtCursor != null) {
+		if (CurrentGame.objcetToPlace != null) {
 
 			if (falseClick) {
 				falseClick = false;
@@ -52,14 +54,14 @@ public class Inputs implements MouseMotionListener, MouseListener, MouseWheelLis
 			}
 
 			int[] out = GameUtils.getGridPos(xPos, yPos);
-
-			if (CurrentGame.iconToDrawAtCursor == (LoadImages.objectNexus[0][0])) {
+			System.out.println(CurrentGame.objcetToPlace.getName());
+			if (CurrentGame.objcetToPlace.getName() == "nexus") {
 				System.out.println(true);
-				CurrentGame.grid.objects[out[0]][out[1]] = new GridObject("nexus", 0, 0, out[0], out[1]);
-				CurrentGame.iconToDrawAtCursor = null;
-			} else if (CurrentGame.iconToDrawAtCursor == (LoadImages.objectRoad[0][0])) {
-				CurrentGame.grid.objects[out[0]][out[1]] = new GridObject("road", 0, 0, out[0], out[1]);
-				CurrentGame.iconToDrawAtCursor = null;
+				CurrentGame.grid.objects[out[0]][out[1]] = new GridObject(new ObjectNexus(0, out[0], out[1]));
+				CurrentGame.objcetToPlace = null;
+			}else if (CurrentGame.objcetToPlace.getName() == "road") {
+				CurrentGame.grid.objects[out[0]][out[1]] = new GridObject(new ObjectRoad(0, out[0], out[1]));
+				CurrentGame.objcetToPlace = null;
 			}
 			falseClick = true;
 		}
@@ -71,11 +73,11 @@ public class Inputs implements MouseMotionListener, MouseListener, MouseWheelLis
 		if (Utils.isPointInRect(xPos, yPos, Main.panelContainer.getWidth() / 2 - 400 + 50,
 				Main.panelContainer.getHeight() / 2 - 275 + 50, 64, 64)) {
 
-			CurrentGame.iconToDrawAtCursor = LoadImages.objectNexus[0][0];
+			CurrentGame.objcetToPlace = new GridObject(new ObjectNexus(0,0,0));
 		} else if (Utils.isPointInRect(xPos, yPos, Main.panelContainer.getWidth() / 2 - 400 + 124,
 				Main.panelContainer.getHeight() / 2 - 275 + 50, 64, 64)) {
 
-			CurrentGame.iconToDrawAtCursor = LoadImages.objectRoad[0][0];
+			CurrentGame.objcetToPlace = new GridObject(new ObjectRoad(0,0,0));;
 		}
 		CurrentGame.showShop = false;
 
@@ -155,10 +157,9 @@ public class Inputs implements MouseMotionListener, MouseListener, MouseWheelLis
 			CurrentGame.zoom++;
 		}
 		
-		CurrentGame.grid.gridSize = CurrentGame.zoom * 64;
+		CurrentGame.grid.gridSize = CurrentGame.zoom * CurrentGame.gridSizeBase;
+		
 		Utils.updateScale();
-		
-		
 		
 		
 	}

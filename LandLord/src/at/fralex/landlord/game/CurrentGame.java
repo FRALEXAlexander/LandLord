@@ -9,7 +9,8 @@ public class CurrentGame {
 	public static String name;
 	public static Grid grid;
 	public static GridObject[] objects;
-	public static Image iconToDrawAtCursor;
+	public static GridObject objcetToPlace;
 	public static boolean showShop;
 	public static int zoom;
+	public static int gridSizeBase;
 }
