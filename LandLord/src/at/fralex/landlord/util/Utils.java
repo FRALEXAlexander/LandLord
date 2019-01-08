@@ -8,6 +8,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 import at.fralex.landlord.game.CurrentGame;
+import at.fralex.landlord.game.objects.GridObject;
+import at.fralex.landlord.game.objects.ObjectRoad;
 import at.fralex.landlord.gui.LoadImages;
 
 public class Utils {
@@ -62,12 +64,78 @@ public class Utils {
 		
 		LoadImages.gridBackground = LoadImages.gridBackground.getScaledInstance(CurrentGame.grid.gridSize, -1, Image.SCALE_REPLICATE);
 		
+	}
+
+	public static void updateRoadTexture(ObjectRoad road) {
 		
-	
+		boolean[] sides = { false, false, false, false };
+
+		// oben
+		try {
+			if (CurrentGame.grid.objects[road.getGridX()][road.getGridY() - 1] != null) {
+				sides[0] = true;
+			} else {
+				sides[0] = false;
+			}
+		} catch (Exception e) {
+			sides[0] = false;
+		};
+		// rechts
+		try {
+		if (CurrentGame.grid.objects[road.getGridX() + 1][road.getGridY()] != null) {
+			sides[1] = true;
+		} else {
+			sides[1] = false;
+		}
+		} catch (Exception e) {
+			sides[1] = false;
+		};
+		// unten
+		try {
+		if (CurrentGame.grid.objects[road.getGridX()][road.getGridY() + 1] != null) {
+			sides[2] = true;
+		} else {
+			sides[2] = false;
+		}
+		} catch (Exception e) {
+			sides[2] = false;
+		};
+		// links
+		try {
+		if (CurrentGame.grid.objects[road.getGridX() - 1][road.getGridY()] != null) {
+			sides[3] = true;
+		} else {
+			sides[3] = false;
+		}
+		} catch (Exception e) {
+			sides[3] = false;
+		};
+		for (int j = 0; j < sides.length; j++) {
+			System.out.print(sides[j] + " ");
+		}
+		System.out.println();
+		
+		int graphic = 0;
+		
+		if(sides[0]) {
+			graphic+=1;
+		}
+		if(sides[1]) {
+			graphic+=2;
+		}
+		if(sides[2]) {
+			graphic+=4;
+		}
+		if(sides[3]) {
+			graphic+=8;
+		}
+		
+		road.setObjectImage(LoadImages.objectRoad[road.getOBJECTLEVEL()][graphic]);
+		System.out.println(graphic);
+		
 		
 		
 	}
-
 	
 	
 }

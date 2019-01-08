@@ -19,6 +19,11 @@ public class GridObject {
 	}
 	
 	
+	public GridObject getObject() {
+		return object;
+	}
+
+
 	public GridObject(GridObject object) {
 
 		this.object = object;
@@ -80,6 +85,16 @@ public class GridObject {
 	public void setGridY(int gridY) {
 		// TODO Auto-generated method stub
 		
+	}
+
+
+	public int getGridX() {
+		return gridX;
+	}
+
+
+	public int getGridY() {
+		return gridY;
 	}
 	
 }
