@@ -54,6 +54,12 @@ public class Inputs implements MouseMotionListener, MouseListener, MouseWheelLis
 			}
 
 			int[] out = GameUtils.getGridPos(xPos, yPos);
+			
+			if(CurrentGame.grid.objects[out[0]][out[1]] != null) {
+				return;
+			}
+			
+			
 			System.out.println(CurrentGame.objcetToPlace.getName());
 			if (CurrentGame.objcetToPlace.getName() == "nexus") {
 				System.out.println(true);

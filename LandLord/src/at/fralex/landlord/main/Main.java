@@ -7,13 +7,14 @@ import at.fralex.landlord.game.objects.ObjectBackground;
 import at.fralex.landlord.game.objects.ObjectNexus;
 import at.fralex.landlord.game.objects.ObjectRoad;
 import at.fralex.landlord.gui.FrameMain;
+import at.fralex.landlord.gui.LoadImages;
 import at.fralex.landlord.gui.PanelContainer;
 import at.fralex.landlord.util.Utils;
 
 public class Main {
 	public static PanelContainer panelContainer = new PanelContainer();
 	public static FrameMain mainFrame = new FrameMain();
-
+	
 	public static void main(String[] args) {
 
 		// CreateIcon.createIcon("Shop", new File("res/test.png"), "Impact",
@@ -21,7 +22,7 @@ public class Main {
 
 		StartNewGame.start("");
 
-	
+		LoadImages.loadImages();
 		
 		
 		

@@ -12,7 +12,7 @@ public class GridObject {
 	private int gridX;
 	private int gridY;
 	
-
+	protected Thread thread;
 	
 	public GridObject() {
 		
@@ -32,17 +32,17 @@ public class GridObject {
 			public void run() {
 				while (true) {
 					Utils.sleep(1000);
-					runtime();
+					object.runtime();
 				}
 			}
 		};
 
-		Thread thread = new Thread(run);
+		thread = new Thread(run);
 		thread.start();
 
 	}
 	
-	public void runtime() {
+	protected void runtime() {
 		
 	}
 

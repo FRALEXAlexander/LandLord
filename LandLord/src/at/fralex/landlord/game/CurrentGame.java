@@ -1,7 +1,5 @@
 package at.fralex.landlord.game;
 
-import java.awt.Image;
-
 import at.fralex.landlord.game.objects.GridObject;
 
 public class CurrentGame {
